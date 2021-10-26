@@ -48,16 +48,7 @@ public class AlumnoController {
     @Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response editar(Alumno alumno) throws CloneNotSupportedException{
-        HashMap<String, String> errores = new HashMap();
-
-        for (ConstraintViolation error: alumno.validar())
-            errores.put(error.getPropertyPath().toString(), error.getMessage());
-
-        if (errores.size() > 0)
-            throw new IllegalArgumentException(errores.toString());
-        else {
-            service.editar(alumno);
-            return Response.status(Response.Status.OK).build();
-        }
+        service.editar(alumno);
+        return Response.status(Response.Status.OK).build();
     }
 }
