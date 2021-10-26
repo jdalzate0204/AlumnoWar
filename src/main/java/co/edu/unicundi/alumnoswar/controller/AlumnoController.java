@@ -2,11 +2,8 @@ package co.edu.unicundi.alumnoswar.controller;
 
 import co.edu.unicundi.alumnosjar.entity.Alumno;
 import co.edu.unicundi.alumnosjar.service.IAlumnoService;
-<<<<<<< HEAD
 import java.util.HashMap;
-=======
 import java.util.List;
->>>>>>> 8af706e75e8a781d4e576f57da15add7fe08b32b
 import javax.ejb.EJB;
 import javax.validation.ConstraintViolation;
 import javax.ws.rs.*;
@@ -40,13 +37,8 @@ public class AlumnoController {
 
     @POST
     @Path("/insertar")
-<<<<<<< HEAD
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response insertar(Alumno alumno) {
-=======
     @Consumes(MediaType.APPLICATION_JSON) //Enviar la información en JSON
     public Response insertar(Alumno alumno) throws CloneNotSupportedException{
->>>>>>> 8af706e75e8a781d4e576f57da15add7fe08b32b
         service.guardar(alumno);
         System.out.println("Registrado correctamente");
         return Response.status(Response.Status.CREATED).build();
