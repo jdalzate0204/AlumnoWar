@@ -50,13 +50,13 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
                                       uriInfo.getPath());
             return Response.status(Response.Status.CONFLICT).entity(ew).build();
         } 
-        else if (exception instanceof WebApplicationException) { //415
+        /*else if (exception instanceof WebApplicationException) { //415
             ew = new ExceptionWraper(Response.Status.UNSUPPORTED_MEDIA_TYPE.getStatusCode(), 
                                       Response.Status.UNSUPPORTED_MEDIA_TYPE.getReasonPhrase(), 
                                       "Formato mal formado", 
                                       uriInfo.getPath());
             return Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).entity(ew).build();
-        }
+        }*/
         else { //500
             ew = new ExceptionWraper(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(), 
                                       Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase(), 
