@@ -56,4 +56,12 @@ public class AlumnoController {
           service.eliminar(id);
           return Response.status(Response.Status.NO_CONTENT).build();
     } 
+    
+    @DELETE
+    @Path("/eliminarNativo/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response eliminarNativo(@PathParam("id") Integer id) {
+          service.eliminarNativo(id);
+          return Response.status(Response.Status.NO_CONTENT).build();
+    } 
 }

@@ -17,7 +17,7 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
         exception.printStackTrace();
         ExceptionWraper ew;
         
-        if (exception instanceof IllegalArgumentException | exception instanceof NumberFormatException) { //400
+        if (exception instanceof IllegalArgumentException) { //400
             ew = new ExceptionWraper(Response.Status.BAD_REQUEST.getStatusCode(), 
                                       Response.Status.BAD_REQUEST.getReasonPhrase(), 
                                       exception.getMessage(), 
