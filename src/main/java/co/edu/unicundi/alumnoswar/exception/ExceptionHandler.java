@@ -1,8 +1,14 @@
 package co.edu.unicundi.alumnoswar.exception;
 
+
+import com.sun.jersey.json.impl.reader.JsonFormatException;
+import javax.json.JsonException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.ws.rs.ext.*;
+import org.codehaus.jettison.json.JSONException;
+import org.eclipse.persistence.internal.libraries.antlr.runtime.MismatchedTokenException;
+
 
 /**
  *
@@ -17,7 +23,7 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
         exception.printStackTrace();
         ExceptionWraper ew;
         
-        if (exception instanceof IllegalArgumentException) { //400
+        if (exception instanceof IllegalArgumentException ) { //400
             ew = new ExceptionWraper(Response.Status.BAD_REQUEST.getStatusCode(), 
                                       Response.Status.BAD_REQUEST.getReasonPhrase(), 
                                       exception.getMessage(), 
@@ -45,7 +51,7 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
                                       uriInfo.getPath());
             return Response.status(Response.Status.CONFLICT).entity(ew).build();
         } 
-        else if (exception instanceof NotSupportedException) { //415
+        else if (exception instanceof WebApplicationException) { //415
             ew = new ExceptionWraper(Response.Status.UNSUPPORTED_MEDIA_TYPE.getStatusCode(), 
                                       Response.Status.UNSUPPORTED_MEDIA_TYPE.getReasonPhrase(), 
                                       "Formato no soportado", 

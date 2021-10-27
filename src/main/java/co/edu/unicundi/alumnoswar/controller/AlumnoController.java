@@ -4,8 +4,12 @@ import co.edu.unicundi.alumnosjar.entity.Alumno;
 import co.edu.unicundi.alumnosjar.service.IAlumnoService;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.json.JsonException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import netscape.javascript.JSException;
+import org.codehaus.jettison.json.JSONException;
+import org.eclipse.persistence.internal.libraries.antlr.runtime.MismatchedTokenException;
 
 /**
  *
@@ -36,7 +40,7 @@ public class AlumnoController {
     @POST
     @Path("/insertar")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response insertar(Alumno alumno) throws CloneNotSupportedException{
+    public Response insertar(Alumno alumno) throws CloneNotSupportedException,JsonException{
         service.guardar(alumno);
         return Response.status(Response.Status.CREATED).build();
     }
