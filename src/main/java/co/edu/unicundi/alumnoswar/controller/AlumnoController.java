@@ -48,4 +48,12 @@ public class AlumnoController {
         service.editar(alumno);
         return Response.status(Response.Status.OK).build();
     }
+    
+    @DELETE
+    @Path("/eliminar/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response eliminar(@PathParam("id") Integer id) {
+          service.eliminar(id);
+          return Response.status(Response.Status.NO_CONTENT).build();
+    } 
 }
