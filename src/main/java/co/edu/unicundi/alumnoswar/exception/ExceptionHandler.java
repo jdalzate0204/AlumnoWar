@@ -1,13 +1,8 @@
 package co.edu.unicundi.alumnoswar.exception;
 
-import javax.ws.rs.NotAllowedException;
-import javax.ws.rs.NotFoundException;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
+import javax.ws.rs.ext.*;
 
 /**
  *
@@ -22,7 +17,7 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
         exception.printStackTrace();
         ExceptionWraper ew;
         
-        if (exception instanceof IllegalArgumentException) { //400
+        if (exception instanceof IllegalArgumentException | exception instanceof NumberFormatException) { //400
             ew = new ExceptionWraper(Response.Status.BAD_REQUEST.getStatusCode(), 
                                       Response.Status.BAD_REQUEST.getReasonPhrase(), 
                                       exception.getMessage(), 
@@ -50,17 +45,17 @@ public class ExceptionHandler implements ExceptionMapper<Exception> {
                                       uriInfo.getPath());
             return Response.status(Response.Status.CONFLICT).entity(ew).build();
         } 
-        /*else if (exception instanceof WebApplicationException) { //415
+        else if (exception instanceof NotSupportedException) { //415
             ew = new ExceptionWraper(Response.Status.UNSUPPORTED_MEDIA_TYPE.getStatusCode(), 
                                       Response.Status.UNSUPPORTED_MEDIA_TYPE.getReasonPhrase(), 
-                                      "Formato mal formado", 
+                                      "Formato no soportado", 
                                       uriInfo.getPath());
             return Response.status(Response.Status.UNSUPPORTED_MEDIA_TYPE).entity(ew).build();
-        }*/
+        }
         else { //500
             ew = new ExceptionWraper(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(), 
                                       Response.Status.INTERNAL_SERVER_ERROR.getReasonPhrase(), 
-                                      "Error interno", 
+                                      "", 
                                       uriInfo.getPath());
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(ew).build();
         }

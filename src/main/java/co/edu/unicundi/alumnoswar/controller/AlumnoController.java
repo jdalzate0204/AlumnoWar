@@ -18,7 +18,7 @@ public class AlumnoController {
     private IAlumnoService service;
     
     @GET
-    @Path("/obtener/{id}")
+    @Path("/obtenerPorId/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response obtenerPorId(@PathParam("id") Integer id) {
         Alumno alumno = service.listarPorId(id);
@@ -44,7 +44,7 @@ public class AlumnoController {
     @PUT
     @Path("/editar")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response editar(Alumno alumno) throws CloneNotSupportedException{
+    public Response editar(Alumno alumno) throws CloneNotSupportedException {
         service.editar(alumno);
         return Response.status(Response.Status.OK).build();
     }
